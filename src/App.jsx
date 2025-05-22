@@ -8,6 +8,8 @@ import CarCare from './CarCare'
 import HomeCare from './HomeCare'
 import PersonalCare from './PersonalCare'
 import AboutUs from './AboutUs'
+import ProductDetails from './ProductDetails'
+
 function App() {
   return (
     <BrowserRouter>
@@ -45,6 +47,13 @@ function App() {
           <>
             <Navbar />
             <AboutUs />
+            <Footer />
+          </>
+        } />
+        <Route path="/product/:productId" element={
+          <>
+            <Navbar />
+            <ProductDetails />
             <Footer />
           </>
         } />

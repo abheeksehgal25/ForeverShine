@@ -29,23 +29,26 @@ const categories = [
 
 
 const newArrivals = [
-
   {
+    id: 'car-perfume',
     name: 'Car Perfume',
     price: '₹ 225.00',
     image: CarPerfume,
   },
   {
+    id: 'tyre-polish',
     name: 'Tyre Polish',
     price: '₹ 90.00',
     image: TyrePolish,
   },
   {
+    id: 'car-wash-shampoo',
     name: 'Car Wash Shampoo',
     price: '₹ 140.00',
     image: CarwashShampoo,
   },
   {
+    id: 'room-freshener',
     name: 'Room Freshener',
     price: '₹ 90.00',
     image: RoomFreshener,
@@ -54,21 +57,25 @@ const newArrivals = [
 
 const bestSellers = [
   {
+    id: 'room-freshener',
     name: 'Room Freshener',
     price: '₹ 90.00',
     image: RoomFreshener,
   },
   {
+    id: 'car-perfume',
     name: 'Car Perfume',
     price: '₹ 225.00',
     image: CarPerfume,
   },
   {
+    id: 'dash-board-polish',
     name: 'Dash-Board Polish',
     price: '₹ 90.00',
     image: DashboardPolish,
   },
   {
+    id: 'car-wash-shampoo',
     name: 'Car Wash Shampoo',
     price: '₹ 140.00',
     image: CarwashShampoo,
@@ -99,7 +106,11 @@ export default function HomeSections() {
       <h3 className="text-3xl font-bold text-red-700 mb-6 tracking-tight drop-shadow">Best Seller Deal</h3>
       <div className="flex gap-8 mb-12 flex-wrap justify-center">
         {bestSellers.map((prod, idx) => (
-          <div key={idx} className="flex flex-col items-center w-64 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out p-4 transform hover:-translate-y-2 cursor-pointer">
+          <Link 
+            key={idx} 
+            to={`/product/${prod.id}`}
+            className="flex flex-col items-center w-64 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out p-4 transform hover:-translate-y-2 cursor-pointer"
+          >
             <img src={prod.image} alt={prod.name} className="w-56 h-56 object-cover rounded-xl mb-3 shadow" />
             <span className="text-lg font-semibold text-gray-800 mb-1">{prod.name}</span>
             <div className="flex items-center justify-between w-full mt-1">
@@ -110,14 +121,18 @@ export default function HomeSections() {
                 </svg>
               </button>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       {/* New Arrivals */}
       <h3 className="text-3xl font-bold text-red-700 mb-6 tracking-tight drop-shadow">New Arrivals</h3>
       <div className="flex gap-8 mb-12 flex-wrap justify-center">
         {newArrivals.map((prod, idx) => (
-          <div key={idx} className="flex flex-col items-center w-64 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out p-4 transform hover:-translate-y-2 cursor-pointer">
+          <Link 
+            key={idx} 
+            to={`/product/${prod.id}`}
+            className="flex flex-col items-center w-64 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out p-4 transform hover:-translate-y-2 cursor-pointer"
+          >
             <img src={prod.image} alt={prod.name} className="w-56 h-56 object-cover rounded-xl mb-3 shadow" />
             <span className="text-lg font-semibold text-gray-800 mb-1">{prod.name}</span>
             <div className="flex items-center justify-between w-full mt-1">
@@ -128,7 +143,7 @@ export default function HomeSections() {
                 </svg>
               </button>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       
