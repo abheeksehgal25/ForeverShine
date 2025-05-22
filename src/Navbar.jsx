@@ -2,8 +2,12 @@ import React from 'react';
 import logo from './images/Logo.webp';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import { useCart } from './context/CartContext';
 
 export default function Navbar() {
+  const { getCartCount } = useCart();
+  const cartCount = getCartCount();
+
   return (
     <nav className="w-full shadow-lg bg-gradient-to-b from-teal-900 to-teal-700/80 sticky top-0 z-50">
       {/* Top Banner */}
@@ -58,9 +62,14 @@ export default function Navbar() {
             </svg>
           </button>
           {/* Cart Icon */}
-          <button className="flex items-center justify-center hover:text-teal-700 hover:bg-teal-200/60 rounded-full p-2 transition-all duration-200 shadow-sm bg-transparent">
+          <Link to="/cart" className="flex items-center justify-center hover:text-teal-700 hover:bg-teal-200/60 rounded-full p-2 transition-all duration-200 shadow-sm bg-transparent relative">
             <ShoppingCartIcon className="w-6 h-6 align-middle" />
-          </button>
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
+          </Link>
         </div>
       </div>
     </nav>

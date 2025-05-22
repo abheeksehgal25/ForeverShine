@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ShoppingCartIcon, HeartIcon, ShareIcon } from '@heroicons/react/24/outline';
+import { useCart } from './context/CartContext';
 import CarPerfume from './images/CarPerfume.webp';
 import DashboardPolish from './images/DashBoardPolish.webp';
 import TyrePolish from './images/TyrePolish.webp';
@@ -231,7 +232,27 @@ export default function ProductDetails() {
   const { productId } = useParams();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const { addToCart } = useCart();
   const product = products[productId];
+
+  const handleAddToCart = () => {
+    if (!product) return;
+    
+    setIsAddingToCart(true);
+    addToCart({
+      id: productId,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category
+    }, quantity);
+
+    // Show success animation
+    setTimeout(() => {
+      setIsAddingToCart(false);
+    }, 1000);
+  };
 
   if (!product) {
     return (
@@ -365,9 +386,15 @@ export default function ProductDetails() {
                 +
               </button>
             </div>
-            <button className="flex-1 bg-teal-600 text-white px-8 py-3 rounded-full hover:bg-teal-700 transition-colors flex items-center justify-center gap-2">
-              <ShoppingCartIcon className="w-6 h-6" />
-              Add to Cart
+            <button 
+              onClick={handleAddToCart}
+              disabled={isAddingToCart}
+              className={`flex-1 bg-teal-600 text-white px-8 py-3 rounded-full hover:bg-teal-700 transition-all flex items-center justify-center gap-2 ${
+                isAddingToCart ? 'opacity-75 cursor-not-allowed' : ''
+              }`}
+            >
+              <ShoppingCartIcon className={`w-6 h-6 ${isAddingToCart ? 'animate-bounce' : ''}`} />
+              {isAddingToCart ? 'Adding...' : 'Add to Cart'}
             </button>
           </div>
 
