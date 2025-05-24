@@ -56,7 +56,7 @@ export default function Slider() {
 
   return (
     <div 
-      className="relative w-full h-[20rem] md:h-[32rem] overflow-hidden rounded-none shadow-2xl bg-gradient-to-br from-white via-gray-50 to-teal-50"
+      className="relative w-full h-[25rem] sm:h-[30rem] md:h-[32rem] overflow-hidden rounded-none shadow-2xl bg-gradient-to-br from-white via-gray-50 to-teal-50"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -67,22 +67,25 @@ export default function Slider() {
           key={idx}
           className={`${idx === current ? 'block scale-100 opacity-100' : 'hidden scale-95 opacity-0'} absolute inset-0 transition-all duration-700 ease-in-out`}
         >
-          <div className="relative w-full h-full flex items-center justify-center">
-            <img 
-              src={slide.image} 
-              alt={slide.title} 
-              className="w-full h-full object-cover md:object-fill object-center bg-white shadow-xl rounded-2xl transition-all duration-700" 
-            />
+          <div className="relative w-full h-full flex items-center justify-center p-4 md:p-0">
+            <div className="relative w-full h-full">
+              <img 
+                src={slide.image} 
+                alt={slide.title} 
+                className="w-full h-full object-contain md:object-cover object-center bg-white shadow-xl rounded-2xl transition-all duration-700" 
+                loading="lazy"
+              />
+            </div>
             <button 
               onClick={prevSlide} 
-              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 md:p-4 shadow-lg hover:bg-teal-100 hover:scale-110 transition-all duration-300 z-50 border border-teal-200"
+              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 md:p-4 shadow-lg hover:bg-teal-100 hover:scale-110 transition-all duration-300 z-50 border border-teal-200"
               aria-label="Previous slide"
             >
               <svg className="w-5 h-5 md:w-7 md:h-7 text-teal-800" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
             </button>
             <button 
               onClick={nextSlide} 
-              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 md:p-4 shadow-lg hover:bg-teal-100 hover:scale-110 transition-all duration-300 z-50 border border-teal-200"
+              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 md:p-4 shadow-lg hover:bg-teal-100 hover:scale-110 transition-all duration-300 z-50 border border-teal-200"
               aria-label="Next slide"
             >
               <svg className="w-5 h-5 md:w-7 md:h-7 text-teal-800" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
