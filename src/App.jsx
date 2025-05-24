@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import Slider from './Slider'
 import HomeSections from './HomeSections'
 import Footer from './Footer'
+import ChatBot from './components/ChatBot'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CarCare from './CarCare'
 import HomeCare from './HomeCare'
@@ -70,6 +71,7 @@ function App() {
     <CartProvider>
       <SearchProvider>
         <BrowserRouter>
+          <ChatBot />
           <Routes>
             <Route path="/" element={
               <>
